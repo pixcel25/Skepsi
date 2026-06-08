@@ -132,7 +132,7 @@
     articleReader.classList.add('hidden');
     progressBar.classList.add('hidden');
     progressBar.style.width = '0%';
-    document.title = 'Skepsi — A Minimalist Blog';
+    document.title = 'Skepsi';
     cleanupArticleView();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -493,16 +493,16 @@
     shareButton.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(window.location.href);
-        
+
         // Trigger animation
         shareIcon.classList.remove('share-animate');
         void shareIcon.offsetWidth; // trigger reflow
         shareIcon.classList.add('share-animate');
-        
+
         // Update state
         shareButton.classList.add('copied');
         shareLabel.textContent = 'Copied!';
-        
+
         setTimeout(() => {
           shareButton.classList.remove('copied');
           shareLabel.textContent = 'Share';
