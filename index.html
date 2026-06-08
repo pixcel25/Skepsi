@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skepsi — A Minimalist Blog</title>
+  <meta name="description"
+    content="Skepsi — A minimalist blog for long-form reading. Black, white, and nothing else." />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-500 min-h-screen font-sans">
+
+  <!-- Reading Progress Bar -->
+  <div id="progress-bar"
+    class="fixed top-0 left-0 h-[2px] bg-black dark:bg-white z-[60] transition-colors duration-500 hidden"
+    style="width: 0%;"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar"
+    class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-black/80 border-b border-black/10 dark:border-white/10 transition-all duration-500">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+      <a href="index.html" id="site-logo"
+        class="text-lg sm:text-xl font-semibold tracking-tight hover:opacity-60 transition-opacity duration-300">
+        skepsi
+      </a>
+      <button id="theme-toggle" aria-label="Toggle dark mode"
+        class="group relative w-11 h-11 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-black/20 dark:border-white/20 hover:border-black dark:hover:border-white active:scale-95 transition-all duration-300">
+        <!-- Sun icon (visible in dark mode) -->
+        <svg id="sun-icon" class="w-5 h-5 hidden dark:block transition-transform duration-300 group-hover:rotate-45"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5" stroke-width="1.5" />
+          <path stroke-width="1.5"
+            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+        <!-- Moon icon (visible in light mode) -->
+        <svg id="moon-icon" class="w-5 h-5 block dark:hidden transition-transform duration-300 group-hover:-rotate-12"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-width="1.5" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 pb-12 sm:pb-20">
+
+    <!-- Hero Section (shown on index) -->
+    <header id="hero-section" class="mb-10 sm:mb-16">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-light leading-tight mb-3 sm:mb-4 animate-fade-in">
+        Thoughts, distilled.
+      </h1>
+      <p class="text-base sm:text-lg text-black/50 dark:text-white/50 font-light max-w-lg animate-fade-in-delay">
+        By Pixcel25
+      </p>
+    </header>
+
+    <!-- Article List -->
+    <section id="article-list" class="space-y-0">
+      <div id="articles-container" class="divide-y divide-black/10 dark:divide-white/10">
+        <!-- Articles loaded dynamically -->
+      </div>
+      <div id="loading-state" class="py-20 text-center text-black/30 dark:text-white/30 font-light">
+        Loading articles...
+      </div>
+      <div id="empty-state" class="py-20 text-center text-black/30 dark:text-white/30 font-light hidden">
+        No articles yet.
+      </div>
+    </section>
+
+    <!-- Article Reader (hidden by default) -->
+    <article id="article-reader" class="hidden">
+      <button id="back-button"
+        class="group inline-flex items-center gap-2 text-sm py-2 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white active:text-black dark:active:text-white transition-colors duration-300 mb-6 sm:mb-10">
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to all articles
+      </button>
+      <div id="article-meta" class="mb-8 sm:mb-10 reveal">
+        <time id="article-date"
+          class="block text-xs sm:text-sm text-black/40 dark:text-white/40 font-mono tracking-wide uppercase mb-2 sm:mb-3"></time>
+        <h1 id="article-title" class="text-2xl sm:text-3xl md:text-4xl font-serif font-light leading-tight"></h1>
+      </div>
+
+      <!-- Mobile TOC (collapsible, shown below xl) -->
+      <div id="toc-mobile" class="xl:hidden mb-8 hidden">
+        <button id="toc-mobile-toggle"
+          class="flex items-center gap-2 text-xs font-mono text-black/40 dark:text-white/40 uppercase tracking-widest py-2 w-full">
+          <span>Contents</span>
+          <svg id="toc-chevron" class="w-3 h-3 transition-transform duration-300" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <nav id="toc-mobile-list" class="hidden border-l border-black/10 dark:border-white/10 pl-4 mt-2 space-y-2">
+          <!-- Mobile TOC items injected here -->
+        </nav>
+      </div>
+
+      <div class="relative">
+        <!-- Desktop TOC Sidebar -->
+        <aside id="toc-desktop" class="hidden xl:block absolute -right-[23rem] top-0 w-[21rem]">
+          <div class="sticky top-28">
+            <span
+              class="block text-[17px] font-mono text-black/30 dark:text-white/30 uppercase tracking-widest mb-3">Contents</span>
+            <nav id="toc-desktop-list" class="border-l border-black/10 dark:border-white/10 space-y-0">
+              <!-- Desktop TOC items injected here -->
+            </nav>
+          </div>
+        </aside>
+
+        <div id="article-content" class="prose-custom font-serif text-base sm:text-lg leading-relaxed">
+          <!-- Rendered markdown goes here -->
+        </div>
+      </div>
+
+      <!-- Share Link -->
+      <div class="mt-12 flex items-center justify-center">
+        <button id="share-button" class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/15 dark:border-white/15 hover:border-black/40 dark:hover:border-white/40 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white transition-all duration-300 text-xs font-mono uppercase tracking-widest">
+          <svg id="share-icon" class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="18" cy="5" r="3" stroke-width="1.5"/>
+            <circle cx="6" cy="12" r="3" stroke-width="1.5"/>
+            <circle cx="18" cy="19" r="3" stroke-width="1.5"/>
+            <path stroke-width="1.5" d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+          </svg>
+          <span id="share-label">Share</span>
+        </button>
+      </div>
+
+      <!-- Prev / Next Navigation -->
+      <nav id="article-nav" class="hidden mt-16 pt-8 border-t border-black/10 dark:border-white/10">
+        <div class="flex items-stretch justify-between gap-4">
+          <a id="nav-prev" href="#" class="group flex-1 min-w-0 py-3 hidden">
+            <span class="block text-xs font-mono text-black/30 dark:text-white/30 uppercase tracking-widest mb-1">← Previous</span>
+            <span id="nav-prev-title" class="block text-sm sm:text-base font-serif truncate text-black/60 dark:text-white/60 group-hover:text-black dark:group-hover:text-white transition-colors duration-300"></span>
+          </a>
+          <a id="nav-next" href="#" class="group flex-1 min-w-0 py-3 text-right hidden">
+            <span class="block text-xs font-mono text-black/30 dark:text-white/30 uppercase tracking-widest mb-1">Next →</span>
+            <span id="nav-next-title" class="block text-sm sm:text-base font-serif truncate text-black/60 dark:text-white/60 group-hover:text-black dark:group-hover:text-white transition-colors duration-300"></span>
+          </a>
+        </div>
+      </nav>
+
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/10 dark:border-white/10 transition-colors duration-500">
+    <div
+      class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex items-center justify-between text-xs text-black/30 dark:text-white/30">
+      <span>© <span id="footer-year"></span> skepsi</span>
+      <a href="mailto:rylanfranco251006@gmail.com"
+        class="hover:text-black dark:hover:text-white transition-colors duration-300 font-mono">email</a>
+    </div>
+  </footer>
+
+  <!-- Marked.js for Markdown rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
