@@ -433,7 +433,7 @@
       // Render prev/next navigation
       posts.sort((a, b) => new Date(b.date) - new Date(a.date));
       renderArticleNav(slug, posts);
-      document.title = `${post.title} — Skepsi`;
+      document.title = `${post.title}`;
     } catch (error) {
       console.error('Error loading article:', error);
       articleTitle.textContent = 'Error';
