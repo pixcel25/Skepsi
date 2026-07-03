@@ -11,9 +11,9 @@ skepsi/
 ├── app.js              # Blog engine (routing, rendering, theme)
 ├── articles/
 │   ├── posts.json      # Article index (metadata)
-│   ├── on-simplicity.md
-│   ├── the-weight-of-words.md
-│   └── digital-minimalism.md
+│   ├── AI-experience.md
+│   ├── hackathon.md
+│   └── internet.md
 └── README.md
 ```
 

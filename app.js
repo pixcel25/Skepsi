@@ -141,6 +141,9 @@
     heroSection.classList.add('hidden');
     articleList.classList.add('hidden');
     articleReader.classList.remove('hidden');
+    // Remove and re-add to replay the entry animation on each navigation
+    articleReader.classList.remove('page-enter');
+    void articleReader.offsetWidth; // trigger reflow
     articleReader.classList.add('page-enter');
     progressBar.classList.remove('hidden');
     window.scrollTo({ top: 0 });
@@ -407,7 +410,8 @@
       const markdown = await mdResponse.text();
 
       // Strip front-matter if present (lines between --- delimiters)
-      const content = markdown.replace(/^---[\s\S]*?---\n*/m, '');
+      // Strip front-matter (no 'm' flag so ^ only matches start of string)
+      const content = markdown.replace(/^---[\s\S]*?---\n*/, '');
 
       // Render
       articleTitle.textContent = post.title;
