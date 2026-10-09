@@ -39,6 +39,10 @@ skepsi/
 
 Click the moon/sun icon in the top-right corner. Your preference is saved in `localStorage` and persists across sessions. If no preference is set, it follows your system theme.
 
+## RSS Feed
+
+Subscribe using the RSS icon in the top-right corner or open `articles/feed.xml` directly.
+
 ## Deploying to GitHub Pages
 
 1. Create a repository on GitHub (e.g., `skepsi`)

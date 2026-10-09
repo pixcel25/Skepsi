@@ -7,9 +7,10 @@
         <title>Skepsi</title>
         <meta
             name="description"
-            content="Skepsi — A minimalist blog for long-form reading. Black, white, and nothing else."
+            content="Skepsi — A minimalist blog for long-form reading by pixcel25."
         />
         <meta name="theme-color" content="#000000" />
+        <link rel="alternate" type="application/rss+xml" title="Skepsi RSS Feed" href="articles/feed.xml" />
 
         <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -64,7 +65,28 @@
                 >
                     skepsi
                 </a>
-                <button
+                <div class="flex items-center gap-2">
+                    <a
+                        id="rss-link"
+                        href="articles/feed.xml"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="RSS feed"
+                        title="RSS feed"
+                        class="group w-11 h-11 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-black/20 dark:border-white/20 hover:border-black dark:hover:border-white active:scale-95 transition-all duration-300"
+                    >
+                        <svg
+                            class="w-4 h-4 transition-transform duration-300 group-hover:scale-110"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path stroke-width="1.8" stroke-linecap="round" d="M5 5.5a13.5 13.5 0 0 1 13.5 13.5M5 11a8 8 0 0 1 8 8" />
+                            <circle cx="5.5" cy="18.5" r="1.25" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <button
                     id="theme-toggle"
                     aria-label="Toggle dark mode"
                     class="group relative w-11 h-11 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-black/20 dark:border-white/20 hover:border-black dark:hover:border-white active:scale-95 transition-all duration-300"
@@ -96,7 +118,8 @@
                             d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
                         />
                     </svg>
-                </button>
+                    </button>
+                </div>
             </div>
         </nav>
 

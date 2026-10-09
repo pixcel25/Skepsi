@@ -157,6 +157,9 @@
     tocDesktop.classList.add('hidden');
     tocMobileList.classList.add('hidden');
     tocChevron.style.transform = '';
+    articleNav.classList.add('hidden');
+    navPrev.classList.add('hidden');
+    navNext.classList.add('hidden');
     if (revealObserver) {
       revealObserver.disconnect();
       revealObserver = null;
@@ -496,7 +499,19 @@
   if (shareButton) {
     shareButton.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(window.location.href);
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(window.location.href);
+        } else {
+          const input = document.createElement('input');
+          input.value = window.location.href;
+          input.setAttribute('readonly', '');
+          input.style.position = 'fixed';
+          input.style.opacity = '0';
+          document.body.appendChild(input);
+          input.select();
+          if (!document.execCommand('copy')) throw new Error('Copy command failed');
+          input.remove();
+        }
 
         // Trigger animation
         shareIcon.classList.remove('share-animate');

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Skepsi</title>
+    <link>https://pixcel25.github.io/skepsi/</link>
+    <description>A minimalist blog for long-form reading by pixcel25.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Rebuilding the internet</title>
+      <link>https://pixcel25.github.io/skepsi/?article=internet</link>
+      <guid isPermaLink="true">https://pixcel25.github.io/skepsi/?article=internet</guid>
+      <description>How I would rebuild the internet.</description>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Lessons from Hackathons</title>
+      <link>https://pixcel25.github.io/skepsi/?article=hackathon</link>
+      <guid isPermaLink="true">https://pixcel25.github.io/skepsi/?article=hackathon</guid>
+      <description>Some lessons I learnt from hackathons.</description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>The next step for AI is Experience</title>
+      <link>https://pixcel25.github.io/skepsi/?article=AI-experience</link>
+      <guid isPermaLink="true">https://pixcel25.github.io/skepsi/?article=AI-experience</guid>
+      <description>AI companies won't just be selling models. They'll be selling experiences.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
